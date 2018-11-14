@@ -137,7 +137,7 @@ public class SslConnectionCheckingTest {
       List<Ct.SignedCertificateTimestamp> sctsInCertificate =
           VerifySignature.parseSCTsFromCert(leafCertificate);
       if (sctsInCertificate.size() < MIN_VALID_SCTS) {
-        v("  Two few SCTs are present, I want at least 2 CT logs to be nominated.");
+        v("  Too few SCTs are present, I want at least 2 CT logs to be nominated.");
         return false;
       }
 
@@ -157,7 +157,7 @@ public class SslConnectionCheckingTest {
       }
 
       if (validSctCount < MIN_VALID_SCTS) {
-        v("  Two few trusted SCTs are present, I want at least 2 trusted CT logs.");
+        v("  Too few trusted SCTs are present, I want at least 2 trusted CT logs.");
       }
       return validSctCount >= MIN_VALID_SCTS;
 
