@@ -171,7 +171,7 @@ public class SslConnectionCheckingTest {
 
   // A collection of CT logs that are trusted for the purposes of this test. Derived from
   // https://www.certificate-transparency.org/known-logs -> https://www.gstatic.com/ct/log_list/log_list.json
-  private static String[] TRUSTED_LOG_KEYS = {
+  private static final String[] TRUSTED_LOG_KEYS = {
     // Comodo 'Sabre' CT log : https://ct.grahamedgecombe.com/logs/34
     "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8m/SiQ8/xfiHHqtls9m7FyOMBg4JVZY9CgiixXGz0akvKD6DEL8S0ERmFe9U4ZiA0M4kbT5nmuk3I85Sk4bagA==",
     //"Comodo 'Mammoth' CT log", https://mammoth.ct.comodo.com/",
