@@ -13,7 +13,7 @@ import java.util.Map;
 import org.bouncycastle.asn1.ASN1OctetString;
 import org.bouncycastle.asn1.ASN1Primitive;
 import org.bouncycastle.asn1.DEROctetString;
-import org.bouncycastle.crypto.tls.TlsUtils;
+import org.bouncycastle.tls.TlsUtils;
 import org.bouncycastle.util.encoders.Base64;
 import org.certificatetransparency.ctlog.CertificateInfo;
 import org.certificatetransparency.ctlog.LogInfo;
@@ -106,9 +106,10 @@ public class VerifySignature {
     }
   }
 
-  public static List<Ct.SignedCertificateTimestamp> parseSCTsFromCert(X509Certificate leafCert)
-      throws IOException {
+  public static List<Ct.SignedCertificateTimestamp> parseSCTsFromCert(X509Certificate leafCert) throws IOException{
+	  
     byte[] bytes = leafCert.getExtensionValue(CTConstants.SCT_CERTIFICATE_OID);
+    
     List<Ct.SignedCertificateTimestamp> scts = new ArrayList<>();
     ASN1Primitive p = ASN1Primitive.fromByteArray(ASN1OctetString.getInstance(bytes).getOctets());
     DEROctetString o = (DEROctetString) p;
