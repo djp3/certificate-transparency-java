@@ -1,8 +1,5 @@
 package org.certificatetransparency.ctlog;
 
-import org.certificatetransparency.ctlog.LogEntry;
-import org.certificatetransparency.ctlog.MerkleTreeLeaf;
-
 /** ParsedLogEntry data type contains an entry retrieved from Log. */
 public class ParsedLogEntry {
   private final LogEntry logEntry;

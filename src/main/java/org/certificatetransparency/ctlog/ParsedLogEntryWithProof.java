@@ -1,7 +1,5 @@
 package org.certificatetransparency.ctlog;
 
-import org.certificatetransparency.ctlog.MerkleAuditProof;
-
 /** ParsedLogEntry data type contains an entry retrieved from Log with it's audit proof. */
 public class ParsedLogEntryWithProof {
   private final ParsedLogEntry parsedLogEntry;
