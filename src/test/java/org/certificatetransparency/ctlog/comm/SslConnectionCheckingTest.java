@@ -9,7 +9,6 @@ import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.Security;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.security.spec.InvalidKeySpecException;
@@ -21,14 +20,11 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.apache.http.client.utils.URIBuilder;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.ASN1Sequence;
 import org.bouncycastle.asn1.DLSequence;
 import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 import org.bouncycastle.asn1.x9.X9ObjectIdentifiers;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.jsse.provider.BouncyCastleJsseProvider;
 import org.bouncycastle.util.encoders.Base64;
 import org.certificatetransparency.ctlog.CertificateInfo;
 import org.certificatetransparency.ctlog.LogInfo;
@@ -40,10 +36,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
-import utility.Fetch;
 
 /**
  * This test checks that SSL connections to servers with a known good certificate can be verified
@@ -171,10 +163,7 @@ public class SslConnectionCheckingTest {
       List<Ct.SignedCertificateTimestamp> sctsInCertificate =
           VerifySignature.parseSCTsFromCert(leafCertificate);
       if (sctsInCertificate.size() < MIN_VALID_SCTS) {
-        v(
-            "  Too few SCTs are present, I want at least "
-                + MIN_VALID_SCTS
-                + " CT logs to vouch for this certificate.");
+        v("  Too few SCTs are present, I want at least " + MIN_VALID_SCTS + " CT logs to vouch for this certificate.");
         return false;
       }
 
@@ -194,10 +183,7 @@ public class SslConnectionCheckingTest {
       }
 
       if (validSctCount < MIN_VALID_SCTS) {
-        v(
-            "  Too few SCTs are present, I want at least "
-                + MIN_VALID_SCTS
-                + " CT logs to vouch for this certificate.");
+        v( "  Too few SCTs are present, I want at least " + MIN_VALID_SCTS + " CT logs to vouch for this certificate.");
       }
       return validSctCount >= MIN_VALID_SCTS;
 
