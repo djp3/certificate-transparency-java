@@ -123,19 +123,7 @@ public class SslConnectionCheckingTest {
         fail(urlString + " " + e.toString());
       }
     } catch (IOException e) {
-    	if(e.getClass().equals(javax.net.ssl.SSLHandshakeException.class)) {
-    		if(e.getLocalizedMessage().contains("PKIX path building failed")) {
-    			if(shouldPass) {
-    				fail(e.toString());
-    			}
-    		}
-    		else {
-    			fail(e.toString());
-    		}
-    	}
-   		else {
-   			fail(e.toString());
-   		}
+    	fail(e.toString());
     } finally {
       if (con != null) {
         con.disconnect();
