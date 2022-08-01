@@ -9,3 +9,4 @@
 
 # More specific files/directories.
 /target/
+bin

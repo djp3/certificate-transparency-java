@@ -106,10 +106,11 @@ public class VerifySignature {
     }
   }
 
-  public static List<Ct.SignedCertificateTimestamp> parseSCTsFromCert(X509Certificate leafCert) throws IOException{
-	  
+  public static List<Ct.SignedCertificateTimestamp> parseSCTsFromCert(X509Certificate leafCert)
+      throws IOException {
+
     byte[] bytes = leafCert.getExtensionValue(CTConstants.SCT_CERTIFICATE_OID);
-    
+
     List<Ct.SignedCertificateTimestamp> scts = new ArrayList<>();
     ASN1Primitive p = ASN1Primitive.fromByteArray(ASN1OctetString.getInstance(bytes).getOctets());
     DEROctetString o = (DEROctetString) p;
