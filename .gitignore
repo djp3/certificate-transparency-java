@@ -10,3 +10,4 @@
 # More specific files/directories.
 /target/
 bin
+dependency-reduced-pom.xml

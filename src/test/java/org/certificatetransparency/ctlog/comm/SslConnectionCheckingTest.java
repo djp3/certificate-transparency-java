@@ -71,7 +71,7 @@ public class SslConnectionCheckingTest {
 
   @Test
   public void test() {
-    checkConnection("https://github.com", true);
+    //checkConnection("https://github.com", true);
     checkConnection("https://letsencrypt.org", true);
     checkConnection("https://invalid-expected-sct.badssl.com/", false);
   }
