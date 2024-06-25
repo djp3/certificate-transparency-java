@@ -370,7 +370,7 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bctls-jdk15to18</artifactId>
-			<version>1.71</version>
+			<version>1.78</version>
 		</dependency>
 		<!--
 		<dependency>
@@ -382,7 +382,7 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-ext-jdk15to18</artifactId>
-			<version>1.71</version>
+			<version>1.74</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
