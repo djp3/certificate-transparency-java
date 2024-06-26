@@ -9,6 +9,22 @@
 	<version>0.1.3-djp3</version>
 	<description>A application used to communicate with certificate transparency log servers.</description>
 	<url>https://certificate-transparency.org/</url>
+	<properties>
+		<java.version>19</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- protobuf paths -->
+		<protobuf.input.directory>${project.basedir}/src/main/proto</protobuf.input.directory>
+		<protobuf.output.directory>${project.build.directory}/generated-sources</protobuf.output.directory>
+
+		<!-- library versions -->
+		<build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+		<maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+		<maven-dependency-plugin.version>3.4.0</maven-dependency-plugin.version>
+		<maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
+		<os-maven-plugin.version>1.7.1</os-maven-plugin.version>
+		<protobuf.version>4.0.0-rc-2</protobuf.version>
+	</properties>
 	<developers>
 		<developer>
 			<name>Ed Maste</name>
@@ -86,6 +102,7 @@
 		<plugins>
 			<!-- copy protoc binary into build directory -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>${maven-dependency-plugin.version}</version>
 				<executions>
@@ -113,6 +130,7 @@
 			</plugin>
 			<!-- compile proto buffer files using copied protoc binary -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>${maven-antrun-plugin.version}</version>
 				<executions>
@@ -124,7 +142,7 @@
 						</goals>
 						<configuration>
 							<target>
-								<property name="protoc.filename" value="protoc-${protobuf.version}-${os.detected.classifier}.exe" />
+								<property name="protoc.filename" value="protoc-${protobuf.version}-${os.detected.classifier}.exe"/>
 								<property name="protoc.filepath" value="${project.build.directory}/${protoc.filename}" />
 								<chmod file="${protoc.filepath}" perm="ugo+rx" />
 								<mkdir dir="${protobuf.output.directory}" />
@@ -208,6 +226,7 @@
 			</plugin>
 			<plugin>
 				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
 				<configuration>
@@ -221,6 +240,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>${maven-shade-plugin.version}</version>
 				<executions>
@@ -272,6 +292,7 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.0.1</version>
 				<executions>
@@ -284,6 +305,20 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.6</version>
 				<executions>
@@ -318,6 +353,12 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>maven-snapshots</id>
@@ -369,16 +410,9 @@
 		<!-- All the crypto and 509 certificate support -->	
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
-			<artifactId>bctls-jdk15to18</artifactId>
+			<artifactId>bctls-jdk18on</artifactId>
 			<version>1.71</version>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk15to18</artifactId>
-			<version>1.71</version>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-ext-jdk15to18</artifactId>
@@ -397,22 +431,4 @@
 		</dependency>
 
 	</dependencies>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-	<properties>
-		<java.version>19</java.version>
-		<maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
-		<build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-		<protobuf.input.directory>${project.basedir}/src/main/proto</protobuf.input.directory>
-		<protobuf.output.directory>${project.build.directory}/generated-sources</protobuf.output.directory>
-		<os-maven-plugin.version>1.7.1</os-maven-plugin.version>
-		<maven-dependency-plugin.version>3.4.0</maven-dependency-plugin.version>
-		<maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
-		<protobuf.version>4.0.0-rc-2</protobuf.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 </project>
