@@ -409,13 +409,10 @@
 		</dependency>
 		<!-- All the crypto and 509 certificate support -->	
 		<dependency>
+			<!-- includes bcprov-jdk18on	-->
+			<!-- includes bcutil-jdk18on	-->
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bctls-jdk18on</artifactId>
-			<version>1.71</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-ext-jdk15to18</artifactId>
 			<version>1.71</version>
 		</dependency>
 		<dependency>
