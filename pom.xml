@@ -271,6 +271,9 @@
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>10.0.4</version>
+				<configuration>
+					<nvdApiKey>${dependency-check.nvd.api.key}</nvdApiKey>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
