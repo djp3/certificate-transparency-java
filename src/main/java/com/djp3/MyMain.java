@@ -1,10 +1,6 @@
+package com.djp3;	
 
-
-public class Main {
-
-  public Main() {
-    // TODO Auto-generated constructor stub
-  }
+public class MyMain {
 
   public static void main(String[] args) {
     System.out.println("Hello world");
