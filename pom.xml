@@ -118,7 +118,7 @@
 									<groupId>com.google.protobuf</groupId>
 									<artifactId>protoc</artifactId>
                                     <!-- Update protobuf version here-->
-									<version>4.29.1</version>
+									<version>4.29.2</version>
 									<classifier>${os.detected.classifier}</classifier>
 									<type>exe</type>
 									<overWrite>true</overWrite>
@@ -144,7 +144,7 @@
 						<configuration>
 							<target>
 							<!-- Update protobuf version here-->
-								<property name="protoc.filename" value="protoc-4.29.1-${os.detected.classifier}.exe"/>
+								<property name="protoc.filename" value="protoc-4.29.2-${os.detected.classifier}.exe"/>
 								<property name="protoc.filepath" value="${project.build.directory}/${protoc.filename}" />
 								<chmod file="${protoc.filepath}" perm="ugo+rx" />
 								<mkdir dir="${protobuf.output.directory}" />
@@ -423,7 +423,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>33.3.1-jre</version>
+			<version>33.4.0-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -434,7 +434,7 @@
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
             <!-- Update protobuf version here-->
-			<version>4.29.1</version>
+			<version>4.29.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
